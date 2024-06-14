@@ -9,6 +9,10 @@ project('scrcpy', 'c',
 
 add_project_arguments('-Wmissing-prototypes', language: 'c')
 
+if meson.get_compiler('c').get_id() == 'gcc'
+    add_project_link_arguments('-lm', language: 'c')
+endif
+
 if get_option('compile_app')
     subdir('app')
 endif
@@ -16,3 +20,4 @@ endif
 if get_option('compile_server')
     subdir('server')
 endif
+
